@@ -1,14 +1,13 @@
 # vpsagent
-An agent service for VPS with http api
-
-You can run a set of commands on your VPS by the http request.
+An agent service for VPS with http api,
+which will help you to run a set of commands on your VPS by using http request.
 
 ## Security
 
-1. Using TLS on network transportation.
-1. Making a signature for reuqest params.
+1. Using TLS on network transport.
+1. Making a signature for reuqest data.
 1. Checking the timestamp to avoid request replay.
-1. Ip white list.
+1. Supporting ip white list.
 
 ## Deployment
 
