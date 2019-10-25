@@ -2,6 +2,8 @@
 An agent service for VPS with http api,
 which will help you to run a set of commands on your VPS by using http request.
 
+It only support vps with linux or darwin os now.
+
 ## Security
 
 1. Using TLS on network transport.
@@ -20,8 +22,7 @@ vspagent \
   -sign-token 'token_for_signature' \
   -tls-key-file '/path/to/tls.key' \
   -tls-cert-file '/path/to/tls.cert' \
-  -ip-allow '127.0.0.1' \
-  -ip-allow '192.168.0.1'
+  -ip-allow '127.0.0.1,192.168.0.1'
 ```
 
 ## Api
@@ -30,7 +31,7 @@ All request must be a POST request with HTTP Header:
 - `Signature: <signature with token>`. See [Signature](#signature) for more information.
 - `Timestamp: <unix timestamp>`. See [Timestamp](#timestamp) for more information.
 
-The request body should be a runable script (bat for windows or shell for linux).
+The request body should be a runable shell script.
 
 For an example:
 
@@ -55,7 +56,7 @@ cat hello-vpsagent.txt
 
 Signature is used to protect your request data from being modified.
 
-The calculate method is: `md5(timestamp@md5(body))`.
+The calculate method is: `md5(token@timestamp@md5(body))`.
 
 In which,
 - The timestamp is comes from your request time. See [Timestamp](#timestamp) for more information.
